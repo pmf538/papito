@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
     if (!patient_id || !doctor_id || !date_prescription || !medicaments) {
       return res.status(400).json({ message: 'Patient ID, Doctor ID, Prescription Date, and Medicaments are required.' });
     }
-    
+
     // Placeholder for doctor_id validation (assuming doctors table exists or will exist)
     // const [doctorExists] = await db.query('SELECT id FROM doctors WHERE id = ?', [doctor_id]);
     // if (doctorExists.length === 0) {
@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
     if (doctorExists.length === 0) {
       return res.status(404).json({ message: `Doctor with ID ${doctor_id} not found.` });
     }
-    
+
     // Placeholder: const [result] = await db.query('INSERT INTO prescriptions (patient_id, doctor_id, date_prescription, medicaments, instructions_generales) VALUES (?, ?, ?, ?, ?)', [patient_id, doctor_id, date_prescription, JSON.stringify(medicaments), instructions_generales]);
     // const newPrescriptionId = result.insertId;
 

@@ -83,7 +83,7 @@ router.post('/:doctorId/schedule', async (req, res) => {
         date_modification = CURRENT_TIMESTAMP
     `;
     const [result] = await db.query(sql, [doctorId, jour_semaine, heure_debut, heure_fin, notes || null]);
-    
+
     if (result.insertId > 0) {
         res.status(201).json({ message: "Successfully created schedule entry.", data: { id: result.insertId, doctor_id: doctorId, ...req.body } });
     } else if (result.affectedRows > 0) {
@@ -133,7 +133,7 @@ router.delete('/:doctorId/schedule/:scheduleId', async (req, res) => {
     if (doctorRows.length === 0) {
       return res.status(404).json({ message: `Doctor with ID ${doctorId} not found.` });
     }
-    
+
     const [result] = await db.query('DELETE FROM doctor_schedules WHERE id = ? AND doctor_id = ?', [scheduleId, doctorId]);
 
     if (result.affectedRows === 0) {

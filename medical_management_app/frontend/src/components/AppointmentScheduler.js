@@ -21,7 +21,7 @@ function AppointmentScheduler() {
           // Set default doctor_id if doctors are available
           setFormData(prevFormData => ({
             ...prevFormData,
-            doctor_id: (response.data.data || response.data)[0].id 
+            doctor_id: (response.data.data || response.data)[0].id
           }));
         }
         setLoadingDoctors(false);
@@ -53,11 +53,11 @@ function AppointmentScheduler() {
       };
       const response = await axios.post('/api/appointments', payload);
       setMessage(response.data.message || 'Appointment scheduled successfully!');
-      setFormData({ 
-        patient_id: '', 
+      setFormData({
+        patient_id: '',
         doctor_id: doctors.length > 0 ? doctors[0].id : '', // Reset to first doctor or empty
-        date_heure_rdv: '', 
-        motif_rdv: '' 
+        date_heure_rdv: '',
+        motif_rdv: ''
       });
     } catch (error) {
       setMessage(error.response?.data?.message || 'Error scheduling appointment.');

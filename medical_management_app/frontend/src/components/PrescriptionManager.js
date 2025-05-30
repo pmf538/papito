@@ -61,18 +61,18 @@ function PrescriptionManager() {
       };
       const response = await axios.post('/api/prescriptions', payload);
       setMessage(response.data.message || 'Prescription created successfully!');
-      setFormData({ 
-        patient_id: '', 
-        doctor_id: doctors.length > 0 ? doctors[0].id : '', 
-        date_prescription: '', 
-        medicaments: '', 
-        instructions_generales: '' 
+      setFormData({
+        patient_id: '',
+        doctor_id: doctors.length > 0 ? doctors[0].id : '',
+        date_prescription: '',
+        medicaments: '',
+        instructions_generales: ''
       });
     } catch (error) {
       setMessage(error.response?.data?.message || 'Error creating prescription.');
     }
   };
-  
+
   // Basic fetch logic (can be expanded)
   // const fetchPrescriptions = async (patientIdToFetch) => { ... };
 

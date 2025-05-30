@@ -1,9 +1,9 @@
 const express = require('express');
 // const db = require('./db'); // Import db to initialize connection (optional here, depends on strategy) - db is used in routes
 const patientRoutes = require('./routes/patients');
-const appointmentRoutes = require('./routes/appointments'); 
-const prescriptionRoutes = require('./routes/prescriptions'); 
-const doctorRoutes = require('./routes/doctors'); 
+const appointmentRoutes = require('./routes/appointments');
+const prescriptionRoutes = require('./routes/prescriptions');
+const doctorRoutes = require('./routes/doctors');
 
 const app = express();
 

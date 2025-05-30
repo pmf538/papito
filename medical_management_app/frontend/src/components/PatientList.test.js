@@ -37,7 +37,7 @@ describe('PatientList Component', () => {
 
     // Wait for loading to disappear and data to appear
     await waitFor(() => expect(screen.queryByText(/Loading patients.../i)).not.toBeInTheDocument());
-    
+
     // Check for parts of patient info. PatientList renders "prenom nom" together.
     expect(screen.getByText(/Alice Wonderland/i)).toBeInTheDocument();
     expect(screen.getByText(/bob@example.com/i)).toBeInTheDocument(); // Email is a good unique identifier here
@@ -48,12 +48,12 @@ describe('PatientList Component', () => {
     render(<Router><PatientList /></Router>);
 
     await waitFor(() => expect(screen.queryByText(/Loading patients.../i)).not.toBeInTheDocument());
-    
+
     // The error message in PatientList.js is "Error loading patients: {error}"
     // So we check for the generic part and then the specific message if needed
     expect(screen.getByText(/Error loading patients:/i)).toBeInTheDocument();
     // The actual error message 'Network Error' is part of the error object and displayed.
-    expect(screen.getByText(/Network Error/i)).toBeInTheDocument(); 
+    expect(screen.getByText(/Network Error/i)).toBeInTheDocument();
   });
 
   test('displays "No patients found" when API returns empty list', async () => {

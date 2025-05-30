@@ -17,7 +17,7 @@ describe('Patient API Endpoints', () => {
     }
     // Close the pool after all tests in this file are done
     // This is important if jest.config.js's forceExit is not used or if you want finer control
-    await db.end(); 
+    await db.end();
   });
 
   it('should fetch all patients', async () => {
@@ -49,7 +49,7 @@ describe('Patient API Endpoints', () => {
         prenom: 'PatientOnly',
         email: `test-fail-nom-${Date.now()}@example.com`,
       });
-    expect(res.statusCode).toEqual(400); 
+    expect(res.statusCode).toEqual(400);
     expect(res.body.message).toEqual('Nom (Last name) and Prenom (First name) are required fields.');
   });
 
@@ -60,10 +60,10 @@ describe('Patient API Endpoints', () => {
         nom: 'TestOnly',
         email: `test-fail-prenom-${Date.now()}@example.com`,
       });
-    expect(res.statusCode).toEqual(400); 
+    expect(res.statusCode).toEqual(400);
     expect(res.body.message).toEqual('Nom (Last name) and Prenom (First name) are required fields.');
   });
-  
+
   it('should fetch a specific patient by ID', async () => {
     if (!createdPatientId) {
         // This might happen if the "create new patient" test failed.
@@ -72,7 +72,7 @@ describe('Patient API Endpoints', () => {
         console.warn("Skipping test for fetching specific patient as no ID was created in the previous test.");
         // You can throw an error to fail the test explicitly or return to skip
         // throw new Error("createdPatientId is not set, cannot run test 'should fetch a specific patient by ID'");
-        return; 
+        return;
     }
     const res = await request(app).get(`/api/patients/${createdPatientId}`);
     expect(res.statusCode).toEqual(200);
@@ -96,14 +96,14 @@ describe('Patient API Endpoints', () => {
         email: uniqueEmail,
         date_naissance: '1990-01-01',
       });
-    
+
     // Then, try to create another patient with the same email
     const res = await request(app)
       .post('/api/patients')
       .send({
         nom: 'Another',
         prenom: 'User',
-        email: uniqueEmail, 
+        email: uniqueEmail,
         date_naissance: '1991-01-01',
       });
     expect(res.statusCode).toEqual(409);
